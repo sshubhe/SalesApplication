@@ -47,7 +47,7 @@ export class SalesAppComponent implements OnInit {
 
   onCountryChange() {
     console.log(this.profileForm.get("country").value);
-    this.http.get<Sales[]>(this.baseUrl + "/api/sales/" + this.profileForm.get("country").value).subscribe(result => {
+    this.http.get<Sales[]>("/api/sales/" + this.profileForm.get("country").value).subscribe(result => {
       this.sales = result;
     }, error => console.error(error));
 
@@ -56,7 +56,7 @@ export class SalesAppComponent implements OnInit {
   }
 
   getAllCountries() {
-    this.http.get<Countries[]>(this.baseUrl + "/api/countries").subscribe(result => {
+    this.http.get<Countries[]>("/api/countries").subscribe(result => {
       result.forEach(r => this.countries.push(r.country));
     }, error => console.error(error));
   }

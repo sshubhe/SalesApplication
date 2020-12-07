@@ -1,45 +1,57 @@
 <h1 id="tableLabel">Sales Data</h1>
-<h2>{{country}}</h2>
+<h2>{{ country }}</h2>
 <form [formGroup]="profileForm" (ngSubmit)="fetchSalesData()">
-    <label for="country">Country</label>
-    <select style="width:60%" class="form-control" id="country"
-            required
-            formControlName="country" (ngModelChange)="onCountryChange($event)">
-        <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>
-    </select>
-    <br />
+  <label for="country">Country</label>
+  <select
+    style="width:60%"
+    class="form-control"
+    id="country"
+    required
+    formControlName="country"
+    (ngModelChange)="onCountryChange($event)"
+  >
+    <option value="">Please choose one</option>
+    <option *ngFor="let country of countries" [ngValue]="country">{{
+      country
+    }}</option>
+  </select>
+  <br />
 
-    <label for="year">Year</label>
-    <select style="width:60%" class="form-control" id="year"
-            required
-            formControlName="year">
-        <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
-    </select>
+  <label for="year">Year</label>
+  <select
+    style="width:60%"
+    class="form-control"
+    id="year"
+    required
+    formControlName="year"
+  >
+    <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+  </select>
 
-    <br />
-    <label for="states">States</label>
-    <div style="width:60%">
-        <ng-multiselect-dropdown
-                                 [placeholder]="'Select States'"
-                                 [data]="dropdownList"
-                                 formControlName="selectedStates"
-                                 [settings]="dropdownSettings"
-                                 (onSelect)="onItemSelect($event)"
-                                 (onSelectAll)="onSelectAll($event)">
-        </ng-multiselect-dropdown>
-    </div>
-    <br />
-    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+  <br />
+  <label for="states">States</label>
+  <div style="width:60%">
+    <ng-multiselect-dropdown
+      [placeholder]="'Select States'"
+      [data]="dropdownList"
+      formControlName="selectedStates"
+      [settings]="dropdownSettings"
+      (onSelect)="onItemSelect($event)"
+      (onSelectAll)="onSelectAll($event)"
+    >
+    </ng-multiselect-dropdown>
+  </div>
+  <br />
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
 </form>
 <br />
-<table class='table table-striped' id="myTable" aria-labelledby="tableLabel">
-    <thead ng-show="show">
-        <tr>
-            <th>Month</th>
-            <th *ngFor="let col of cols">{{col}}</th>
-        </tr>
-    </thead>
-    <!--<tbody>
+<table class="table table-striped" id="myTable" aria-labelledby="tableLabel">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th *ngFor="let col of cols">{{ col }}</th>
+    </tr>
+  </thead>
+  <!--<tbody>
     </tbody>-->
 </table>
-
