@@ -12,6 +12,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class SalesAppComponent implements OnInit {
 
   public sales: Sales[];
+  public baseUrl: string;
   public states: Array<any> = [];
   public years: Array<any> = [];
   public cols: Array<String> = [];
@@ -23,7 +24,6 @@ export class SalesAppComponent implements OnInit {
     country: new FormControl(''),
     state: new FormControl(''),
     year: new FormControl(''),
-    zip: new FormControl(''),
     selectedStates: new FormControl('')
   });
 
@@ -39,6 +39,7 @@ export class SalesAppComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.getAllCountries();
     this.show = false;
+    this.baseUrl = window.location.origin;
   }
 
   ngOnInit() {
@@ -46,7 +47,7 @@ export class SalesAppComponent implements OnInit {
 
   onCountryChange() {
     console.log(this.profileForm.get("country").value);
-    this.http.get<Sales[]>("https://localhost:23231/api/sales/" + this.profileForm.get("country").value).subscribe(result => {
+    this.http.get<Sales[]>(this.baseUrl + "/api/sales/" + this.profileForm.get("country").value).subscribe(result => {
       this.sales = result;
     }, error => console.error(error));
 
@@ -55,7 +56,7 @@ export class SalesAppComponent implements OnInit {
   }
 
   getAllCountries() {
-    this.http.get<Countries[]>("https://localhost:23231/api/countries").subscribe(result => {
+    this.http.get<Countries[]>(this.baseUrl + "/api/countries").subscribe(result => {
       result.forEach(r => this.countries.push(r.country));
     }, error => console.error(error));
   }
