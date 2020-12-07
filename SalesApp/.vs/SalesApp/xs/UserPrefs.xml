@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{7C3F5AA3-17BD-4B90-B53F-E41E60ADBADA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sales/ClientApp/src/app/sales-app/sales-app.component.ts">
+    <Files>
+      <File FileName="Sales/Controllers/SalesController.cs" Line="39" Column="10" />
+      <File FileName="Sales/Data/DataContext.cs" Line="19" Column="1" />
+      <File FileName="Sales/Controllers/CountriesController.cs" Line="31" Column="2" />
+      <File FileName="Sales/Entities/Countries.cs" />
+      <File FileName="Sales/Entities/SalesRecord.cs" />
+      <File FileName="Sales/ClientApp/src/app/sales-app/sales-app.component.ts" Line="31" Column="24" />
+      <File FileName="Sales/ClientApp/src/app/sales-app/sales-app.component.html" Line="10" Column="49" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SalesApp" expanded="True">
+            <Node name="Sales" expanded="True">
+              <Node name="ClientApp" expanded="True">
+                <Node name="src" expanded="True">
+                  <Node name="app" expanded="True">
+                    <Node name="sales-app" expanded="True">
+                      <Node name="sales-app.component.ts" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Entities" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Sales PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
