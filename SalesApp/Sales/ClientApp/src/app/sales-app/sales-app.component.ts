@@ -37,16 +37,14 @@ export class SalesAppComponent implements OnInit {
 
 
   constructor(private http: HttpClient) {
-    this.getAllCountries();
-    this.show = false;
-    this.baseUrl = window.location.origin;
   }
 
   ngOnInit() {
+    this.getAllCountries();
   }
 
   onCountryChange() {
-    console.log(this.profileForm.get("country").value);
+    console.log(this.sales);
     this.http.get<Sales[]>("/api/sales/" + this.profileForm.get("country").value).subscribe(result => {
       this.sales = result;
     }, error => console.error(error));
@@ -141,19 +139,19 @@ export class SalesAppComponent implements OnInit {
   }
 
 
- groupBy(list, keyGetter) {
-  const map = new Map();
-  list.forEach((item) => {
-    const key = keyGetter(item);
-    const collection = map.get(key);
-    if (!collection) {
-      map.set(key, [item]);
-    } else {
-      collection.push(item);
-    }
-  });
-  return map;
-}
+  groupBy(list, keyGetter) {
+    const map = new Map();
+    list.forEach((item) => {
+      const key = keyGetter(item);
+      const collection = map.get(key);
+      if (!collection) {
+        map.set(key, [item]);
+      } else {
+        collection.push(item);
+      }
+    });
+    return map;
+  }
 
 
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sales.Data;
 using Sales.Entities;
+using Sales.Service;
 
 namespace Sales.Controllers
 {
@@ -12,30 +13,22 @@ namespace Sales.Controllers
     [Route("api/[controller]")]
     public class SalesController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly SalesService _salesService;
 
         public SalesController(DataContext context)
         {
-            _context = context;
+            _salesService = new SalesService(context);
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<SalesRecord>> GetSales() => _context.Sales.ToList();
-
-
-
-        //[HttpGet]
-        //public Object GetYears() {
-        //    return _context.YearsData.ToList();
-        //}
+        public ActionResult<IEnumerable<SalesRecord>> GetSales() => _salesService.GetSales();
 
 
         [HttpGet]
         [Route("{country}")]
-        public ActionResult<IEnumerable<SalesRecord>> GetStates(string country)
+        public ActionResult<IEnumerable<SalesRecord>> GetSalesForCountry(string country)
         {
-            return _context.Sales.FromSqlRaw("SELECT distinct * FROM Sales s")
-            .ToList(); ;
+            return _salesService.GetSalesData(country);
         }
 
     }
