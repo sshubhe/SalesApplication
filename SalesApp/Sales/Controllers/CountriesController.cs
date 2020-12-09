@@ -21,12 +21,8 @@ namespace Sales.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //public ActionResult<IEnumerable<SalesRecord>> GetSales() => _context.Sales.ToList();
-
         [HttpGet]
         public ActionResult<IEnumerable<Countries>> GetCountries() => _context.CountriesData.FromSqlRaw("SELECT distinct cd.country FROM CountriesData cd").ToList();
-
 
     }
 }

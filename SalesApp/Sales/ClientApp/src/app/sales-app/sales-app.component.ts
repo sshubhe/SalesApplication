@@ -4,7 +4,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 
-
 @Component({
   selector: 'app-sales-app',
   templateUrl: './sales-app.component.html'
@@ -43,14 +42,27 @@ export class SalesAppComponent implements OnInit {
     this.getAllCountries();
   }
 
-  onCountryChange() {
+  async onCountryChange() {
+    await this.getSalesData();
     console.log(this.sales);
-    this.http.get<Sales[]>("/api/sales/" + this.profileForm.get("country").value).subscribe(result => {
-      this.sales = result;
-    }, error => console.error(error));
-
     this.years = [...new Set(this.sales.map(item => item.year))];
+    console.log("years" + this.years);
     this.dropdownList = [...new Set(this.sales.map(item => item.state))];
+    console.log("dropdown" + this.dropdownList);
+  }
+
+  getSalesData() {
+    let promise = new Promise((resolve, reject) => {
+      this.http.get<Sales[]>("/api/sales/" + this.profileForm.get("country").value)
+        .toPromise()
+        .then(
+          res => {
+            this.sales = res;
+            resolve();
+          }
+        );
+    });
+    return promise;
   }
 
   getAllCountries() {
@@ -60,10 +72,11 @@ export class SalesAppComponent implements OnInit {
   }
 
   fetchSalesData() {
-    for (var i = 0; i < this.sales.length; i++) {
-      console.log(this.sales[i].state);
-      if (this.cols.indexOf(this.sales[i].state) == -1) {
-        this.cols.push(this.sales[i].state);
+    console.log(this.profileForm.value.selectedStates);
+    for (var i = 0; i < this.profileForm.value.selectedStates.length; i++) {
+      console.log(this.profileForm.value.selectedStates);
+      if (this.cols.indexOf(this.profileForm.value.selectedStates[i]) == -1) {
+        this.cols.push(this.profileForm.value.selectedStates[i]);
       }
     }
     this.groupedByMonth = this.groupBy(this.sales, s => s.month);

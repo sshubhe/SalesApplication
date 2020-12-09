@@ -2,10 +2,9 @@
 <h2>{{country}}</h2>
 <form [formGroup]="profileForm" (ngSubmit)="fetchSalesData()">
     <label for="country">Country</label>
-    <select style="width:60%" class="form-control" id="countryId"
-            required
-            formControlName="country" (ngModelChange)="onCountryChange($event)">
-        <option *ngFor="let country of countries" [(ngValue)]="country">{{country}}</option>
+    <select style="width:60%" class="form-control" formControlName="country" (ngModelChange)="onCountryChange($event)">
+        <option disabled>Select Country</option>
+        <option *ngFor="let c of countries">{{c}}</option>
     </select>
     <br />
     <label for="year">Year</label>

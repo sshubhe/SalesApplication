@@ -13,6 +13,5 @@ namespace Sales.Data
 
         public DbSet<SalesRecord> Sales { get; set; }
         public DbSet<Countries> CountriesData { get; set; }
-        //public DbSet<Years> YearsData { get; set; }
     }
 }
